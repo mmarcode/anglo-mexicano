@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://example.com/sitemap.xml
-Host: https://example.com
+Sitemap: https://anglo-mexicano.vercel.app/sitemap.xml
+Host: https://anglo-mexicano.vercel.app
