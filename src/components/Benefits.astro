@@ -1,0 +1,193 @@
+<section
+  aria-labelledby="amco-heading"
+  class="w-full max-w-7xl mx-auto my-12 gap-10 text-pretty px-6 text-left text-xl flex flex-col md:flex-row items-center justify-between py-6 md:py-8"
+>
+  <div class="md:w-1/2 space-y-4">
+    <h2 id="amco-heading"
+      class="prose text-4xl md:text-5xl mx-auto mb-10 text-balance text-left lg:text-5xl font-bold tracking-wide
+      text-[#4f4f4f] leading-tight">
+      Metodología Pedagógica AMCO
+    </h2>
+
+    <p class="prose text-lg md:text-xl text-[#666666] max-w-4xl mx-auto leading-relaxed">
+      Implementamos el Sistema AMCO, una metodología innovadora que potencia el aprendizaje integral mediante estrategias centradas en el alumno. Este modelo favorece el pensamiento crítico, la creatividad y el dominio del idioma inglés de manera natural y progresiva.
+    </p>
+  </div>
+  <figure class="mt-6 md:mt-0 md:w-1/2 rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition-transform duration-300">
+    <img
+      alt="Estudiantes en clase con material AMCO"
+      loading="lazy"
+      decoding="async"
+      class="object-cover w-full h-full rounded-md transition-transform duration-300 ease-out hover:scale-105"
+      height={500}
+      src="/images/amco.webp"
+      style={{
+        aspectRatio: "812/556",
+        objectFit: "cover",
+      }}
+      width={500}
+    />
+  </figure>
+</section>
+
+<section
+  aria-labelledby="cambridge-heading"
+  class="w-full max-w-7xl mx-auto my-12 gap-10 text-pretty px-6 text-left text-xl flex flex-col md:flex-row items-center justify-between py-6 md:py-8"
+>
+  <div class="mt-6 md:mt-0 md:w-1/2">
+    <figure class="rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition-transform duration-300">
+      <img
+        alt="Certificación Cambridge English"
+        loading="lazy"
+        decoding="async"
+        class="object-cover w-full h-full rounded-md transition-transform duration-300 ease-out hover:scale-105"
+        height={556}
+        src="/images/cambridge.webp"
+        style={{
+          aspectRatio: "812/556",
+          objectFit: "cover",
+        }}
+        width={812}
+      />
+    </figure>
+  </div>
+  <div class="md:w-1/2 space-y-4">
+    <h2
+      id="cambridge-heading"
+      class="prose text-4xl md:text-5xl mx-auto mb-10 text-balance text-left lg:text-5xl font-bold tracking-wide
+      text-[#4f4f4f] leading-tight">
+      Certificación Internacional en Inglés
+    </h2>
+    <p class="prose text-lg md:text-xl text-[#666666] max-w-4xl mx-auto leading-relaxed">
+      Nuestra institución ofrece preparación y certificación de Cambridge English, reconocida a nivel internacional y con validez de por vida. Esto garantiza que nuestros alumnos desarrollen habilidades lingüísticas sólidas y competitivas para su futuro académico y profesional.
+    </p>
+  </div>
+</section>
+
+<section
+  aria-labelledby="tech-heading"
+  class="w-full max-w-7xl mx-auto my-12 gap-10 text-pretty px-6 text-left text-xl flex flex-col md:flex-row items-center justify-between py-6 md:py-8"
+>
+  <div class="md:w-1/2 space-y-4">
+    <h2
+      id="tech-heading"
+      class="prose text-4xl md:text-5xl mx-auto mb-10 text-balance text-left lg:text-5xl font-bold tracking-wide
+      text-[#4f4f4f] leading-tight">
+      Tecnología Educativa de Vanguardia
+    </h2>
+    <p class="prose text-lg md:text-xl text-[#666666] max-w-4xl mx-auto leading-relaxed">
+      Formamos parte de los Colegios Google Workspace, lo que nos permite integrar herramientas digitales de última generación en el aprendizaje diario. Nuestros estudiantes desarrollan competencias tecnológicas esenciales y cuentan con acceso a educación a distancia cuando es necesario.
+    </p>
+  </div>
+  <figure class="mt-6 md:mt-0 md:w-1/2 rounded-md overflow-hidden shadow-lg hover:shadow-2xl transition-transform duration-300">
+    <img
+      alt="Estudiantes usando Google Workspace"
+      loading="lazy"
+      decoding="async"
+      class="object-cover w-full h-full rounded-md transition-transform duration-300 ease-out hover:scale-105"
+      height={500}
+      src="/images/google.webp"
+      style={{
+        aspectRatio: "812/556",
+        objectFit: "cover",
+      }}
+      width={500}
+    />
+  </figure>
+</section>
+
+<style>
+  .theater,
+  .trophies-text h1,
+  .trophies-text p {
+    animation: cover-animation 1s linear both;
+    animation-timeline: view();
+  }
+
+  .theater-text h1,
+  .theater-text p,
+  .trophies {
+    animation: entry-animation 1s linear both;
+    animation-timeline: view();
+  }
+
+  .theater {
+    animation-range: entry 10% cover 40%;
+  }
+
+  .theater-text h1 {
+    animation-range: entry 10% cover 30%;
+  }
+
+  .theater-text p {
+    animation-range: entry 10% cover 20%;
+  }
+
+  .trophies {
+    animation-range: entry 30% cover 50%;
+  }
+
+  .trophies-text h1 {
+    animation-range: entry 30% cover 40%;
+  }
+
+  .trophies-text p {
+    animation-range: entry 20% cover 30%;
+  }
+
+  /* Definimos variables por defecto para dirección y fallback */
+  .theater,
+  .trophies,
+  .theater-text h1,
+  .theater-text p,
+  .trophies-text h1,
+  .trophies-text p {
+    --entry-animation: -30%;
+    --cover-animation: 30%;
+    will-change: transform, opacity;
+  }
+
+  /* Anulamos direcciones donde convenga */
+  .trophies {
+    --entry-animation: 30%;
+  }
+  .trophies-text h1,
+  .trophies-text p {
+    --cover-animation: -30%;
+  }
+
+  @keyframes entry-animation {
+    0% {
+      opacity: 0;
+      transform: translateX(var(--entry-animation, 0));
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes cover-animation {
+    0% {
+      opacity: 0;
+      transform: translateX(var(--cover-animation, 0));
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .theater,
+    .trophies,
+    .theater-text h1,
+    .theater-text p,
+    .trophies-text h1,
+    .trophies-text p {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

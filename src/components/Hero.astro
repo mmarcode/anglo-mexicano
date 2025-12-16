@@ -1,0 +1,205 @@
+<header class="relative h-dvh w-full max-w-[100vw] md:h-full xl:h-full" aria-labelledby="hero-title">
+  <div class="absolute inset-0 h-full justify-center z-10 m-auto flex flex-col items-center w-full">
+    <div class="absolute z-10 inset-0 bg-linear-to-b from-black/30 to-transparent"></div>
+    <picture class="absolute inset-0 w-full h-full">
+      <img
+        class="absolute inset-0 w-full h-full object-cover object-top animate-fade animate-ease-in-out animate-duration-1000"
+        src="/images/classroom.webp"
+        alt="Estudiantes en salón — Centro Escolar Anglo Mexicano"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        width="1920"
+        height="1080"
+        sizes="100vw"
+      />
+    </picture>
+
+    <section class="absolute z-20 animate-fade-up flex flex-col justify-center gap-6 max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-20 py-8 items-center text-center hero-content">
+      <h1 id="hero-title" class="text-white uppercase font-extrabold hero-title">
+        <span class="block">Tradición de excelencia</span>
+        <span class="block">en educación</span>
+      </h1>
+      <p class="prose subtitle lg:text-2xl text-center text-wrap px-4 text-white max-w-3xl hero-subtitle">
+        Somos una institución con más de 36 años de trayectoria educativa, comprometida con la formación integral de niños y jóvenes, desarrollando habilidades y competencias que abren puertas hacia un futuro lleno de oportunidades.
+      </p>
+      <a
+        id="hero-video-link"
+        href="https://www.youtube.com/watch?v=zPGEKKubKqE"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-open-video
+        aria-controls="video-modal"
+        aria-expanded="false"
+        class="group hero-cta"
+      >
+        Conoce más
+      </a>
+    </section>
+    <div class="svg" id="svg-1">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" 
+        viewBox="0 0 1178 55.21875" style="enable-background:new 0 0 1178 55.21875;" xml:space="preserve"> 
+        <polygon id="XMLID_2_" style="opacity:0.5;fill:#0099ff;" points="0,0 1178,27.609375 0,55.21875 "></polygon> 
+        <polygon id="XMLID_3_" style="fill:#ebebeb;" points="1178,0 1178,55.21875 0,55.21875 "></polygon> 
+      </svg>
+    </div>
+
+  </div>
+</header>
+
+<!-- Video modal (hidden by default) -->
+<div id="video-modal" class="fixed inset-0 z-50 hidden items-center justify-center" aria-hidden="true">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-20" data-modal-overlay style="z-index:20;"></div>
+  <button type="button" class="overlay-close absolute z-40 top-4 right-4 bg-white/10 text-white p-2 rounded-full shadow-md hover:bg-white/20" data-modal-close aria-label="Cerrar video">✕</button>
+  <div class="relative z-30 w-full max-w-4xl mx-4 lg:mx-0">
+    <div role="dialog" aria-modal="true" aria-label="Video institucional" class="bg-transparent rounded-lg overflow-hidden shadow-xl">
+      <div class="w-full bg-transparent flex items-center justify-center">
+        <div class="video-container relative bg-black rounded-lg overflow-hidden">
+          <div class="aspect-w-16 aspect-h-9">
+            <iframe id="hero-video-iframe" class="w-full h-full" src="" title="Video institucional - Centro Escolar Anglo Mexicano" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <button type="button" class="video-toggle absolute z-40 bottom-4 left-4 bg-black/40 text-white px-3 py-2 rounded-full backdrop-blur-sm hover:bg-black/60" aria-pressed="false" aria-label="Pausar video">❚❚</button>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JSON-LD VideoObject for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Video institucional - Centro Escolar Anglo Mexicano",
+  "description": "Conoce la trayectoria y la propuesta educativa del Centro Escolar Anglo Mexicano. Más de 36 años formando niños y jóvenes preparados para la vida.",
+  "thumbnailUrl": ["/images/classroom.webp"],
+  "embedUrl": "https://www.youtube.com/embed/zPGEKKubKqE",
+  "url": "https://www.youtube.com/watch?v=zPGEKKubKqE"
+}
+</script>
+
+<!-- Modal behavior script: open iframe and handle accessibility -->
+<script>
+(() => {
+  const link = document.querySelector('[data-open-video]');
+  const modal = document.getElementById('video-modal');
+  const iframe = document.getElementById('hero-video-iframe');
+  const overlay = modal && modal.querySelector('[data-modal-overlay]');
+  const closeBtn = modal && modal.querySelector('[data-modal-close]');
+  // Autoplay muted to ensure video starts and is visible after user interaction
+  // `enablejsapi=1` permite controlar play/pause desde el host (postMessage)
+  const embedSrc = 'https://www.youtube.com/embed/zPGEKKubKqE?rel=0&modestbranding=1&autoplay=1&controls=0&iv_load_policy=3&playsinline=1&enablejsapi=1';
+  let lastFocused = null;
+  let isPlaying = false;
+
+  function postMessageToPlayer(cmd) {
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: cmd, args: [] }), '*');
+  }
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    lastFocused = document.activeElement;
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+      iframe.setAttribute('src', embedSrc);
+      // start muted autoplay — mark as playing
+      isPlaying = true;
+      const toggle = modal.querySelector('.video-toggle');
+      toggle && (toggle.textContent = '❚❚', toggle.setAttribute('aria-pressed', 'false'), toggle.setAttribute('aria-label', 'Pausar video'));
+      const close = modal.querySelector('[data-modal-close]');
+      close && close.focus();
+      link && link.setAttribute('aria-expanded', 'true');
+      // No body's overflow change to avoid scrollbar jump on close
+    }
+  }
+
+  function closeModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.setAttribute('aria-hidden', 'true');
+      // stop and clear iframe source so audio stops
+      iframe.setAttribute('src', '');
+      isPlaying = false;
+      link && link.setAttribute('aria-expanded', 'false');
+      lastFocused && lastFocused.focus();
+    }
+  }
+
+  if (link) link.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', closeModal);
+
+  // Toggle custom play/pause button (works with enablejsapi=1)
+  const toggle = document.querySelector('.video-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      if (!isPlaying) {
+        postMessageToPlayer('playVideo');
+        isPlaying = true;
+        toggle.textContent = '❚❚';
+        toggle.setAttribute('aria-label', 'Pausar video');
+        toggle.setAttribute('aria-pressed', 'false');
+      } else {
+        postMessageToPlayer('pauseVideo');
+        isPlaying = false;
+        toggle.textContent = '▶';
+        toggle.setAttribute('aria-label', 'Reanudar video');
+        toggle.setAttribute('aria-pressed', 'true');
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
+</script>
+
+<style>
+  /* Subtitle shadow for readability */
+  .subtitle { text-shadow: 0 8px 30px rgba(0, 0, 0, 0.6); }
+
+  /* Hero responsive typography and layout */
+  .hero-content { padding-inline: clamp(1rem, 4vw, 5rem); }
+  .hero-title { font-size: clamp(1.8rem, 6vw, 3.75rem); line-height: 0.95; letter-spacing: -0.02em; text-wrap: balance; }
+  .hero-subtitle { font-size: clamp(1rem, 2.2vw, 1.375rem); line-height: 1.45; margin-top: 0.5rem; padding: 0.8rem 1rem; border-radius: 10px; max-width: 64ch; }
+
+  /* CTA styling */
+  .hero-cta { --tw-bg-opacity: 0.08; background-color: rgba(255,255,255,var(--tw-bg-opacity)); color: #fff; display: inline-flex; gap: .5rem; align-items: center; justify-content: center; padding: .65rem 1.1rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.18); font-weight: 700; text-transform: uppercase; font-size: clamp(.825rem, 1.6vw, 1rem); transition: transform .16s ease, box-shadow .16s ease, background-color .16s ease; box-shadow: 0 10px 30px rgba(2,6,23,0.32); }
+  .hero-cta:hover { transform: translateY(-4px); background-color: rgba(255,255,255,0.12); box-shadow: 0 14px 38px rgba(2,6,23,0.34); }
+  .hero-cta:focus { outline: 3px solid rgba(37,99,235,0.18); outline-offset: 4px; }
+
+  /* Image and SVG responsiveness */
+  picture.absolute.inset-0 img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+  .svg svg { display: block; width: 100%; height: auto; pointer-events: none; }
+  #svg-1 { position: absolute; left: 0; width: 100%; bottom: clamp(-24px, -4.5vw, -40px); height: auto; aspect-ratio: 1178/55.21875; transform: translateZ(0); }
+
+  /* Modal and video aspect fallback for projects without aspect-ratio utilities */
+  .aspect-w-16.aspect-h-9 { position: relative; width: 100%; padding-bottom: 56.25%; }
+  .aspect-w-16.aspect-h-9 iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+  /* Show modal centered when not hidden */
+  #video-modal { display:flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
+  #video-modal.hidden { display: none; }
+  #video-modal [role="dialog"] { max-height: calc(100vh - 3rem); overflow: visible; }
+
+  .video-container { position: relative; width: min(1100px, 95vw); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(2,6,23,0.6); }
+  .video-container iframe { display: block; }
+
+  /* Custom play/pause toggle */
+  .video-toggle { background: rgba(0,0,0,0.45); border: none; color: #fff; padding: 0.5rem 0.75rem; border-radius: 9999px; cursor: pointer; box-shadow: 0 6px 16px rgba(2,6,23,0.5); }
+  .video-toggle:hover { background: rgba(0,0,0,0.6); }
+  .video-toggle:focus { outline: 2px solid #60a5fa; outline-offset: 3px; }
+
+  /* Close button on overlay (top-right of blur) */
+  .overlay-close { position: absolute; top: 1rem; right: 1rem; z-index: 40; backdrop-filter: blur(6px); background: rgba(255,255,255,0.06); border: none; color: #fff; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border-radius: 9999px; cursor: pointer; box-shadow: 0 4px 12px rgba(2,6,23,0.5); }
+  .overlay-close:hover { background: rgba(255,255,255,0.12); }
+  .overlay-close:focus { outline: 2px solid #60a5fa; outline-offset: 3px; }
+
+  /* Accessibility helpers for modal */
+  [data-modal-close] { font-size: 1rem; }
+</style>

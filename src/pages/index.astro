@@ -1,8 +1,31 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Hero from '@/components/Hero.astro';
+import Footer from '@/components/Footer.astro';
+import Contact from '@/components/Contact.astro';
+import Benefits from '@/components/Benefits.astro';
+import Levels from '@/components/Levels.astro';
+import Community from '@/components/Community.astro';
 ---
 
 <Layout>
+  <meta slot="head" name="description" content="Centro Escolar Anglo Mexicano: educación integral desde preescolar hasta secundaria. Metodologías modernas, certificaciones internacionales y comunidad comprometida." />
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "School",
+    "name": "Centro Escolar Anglo Mexicano",
+    "description": "Centro Escolar Anglo Mexicano ofrece formación integral desde preescolar hasta secundaria con más de 36 años de trayectoria.",
+    "url": "https://example.com",
+    "logo": "https://example.com/images/logo.webp"
+  }
+  </script>
   <Header />
+  <Hero />
+  <Benefits />
+  <Levels />
+  <Community />
+  <Contact />
+  <Footer />
 </Layout>

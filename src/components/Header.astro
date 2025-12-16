@@ -1,0 +1,209 @@
+---
+import HeaderLink from "./HeaderLink.astro"
+import Chevron from "./icons/Chevron.astro"
+---
+
+<header id="navbar" class="fixed top-0 inset-x-0 z-50">
+  <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+    <HeaderLink
+      checkActive={false}
+      href="/"
+      class="flex items-center gap-3 group text__glowing"
+    >
+      <img
+        src="/images/logo.webp"
+        width="48"
+        height="48"
+        alt="Escudo Anglo Mexicano"
+        class="select-none group-hover:drop-shadow-md drop-shadow-2xl hover:scale-110 hover:drop-shadow-[0_20px_35px_rgba(204,204,204,0.3)] transition-all duration-500"
+        loading="lazy"
+      />
+      <span class="prose font-display text-xs tracking-wide leading-tight text-white font-bold">
+        Centro Escolar<br /><span class="prose font-display text-lg font-medium text-white">Anglo Mexicano</span>
+      </span>
+    </HeaderLink>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex gap-8 font-display text-lg font-semibold ml-auto text-white">
+      <li class="text__glowing"><a href="#us">Nosotros</a></li>
+      <li class="relative group">
+        <button class="flex items-center gap-1 text__glowing">
+          Niveles
+          <Chevron />
+        </button>
+        <!-- Contenido del submenú -->
+        <ul class="group-hover:block group-hover:animate-fade-down group-hover:animate-duration-200 hidden pt-0.5 absolute w-full ">
+          <li>
+            <a href="#kinder" class="rounded-md bg-black/30 hover:bg-black/70 whitespace-no-wrap inline-flex justify-start items-center w-[120px] gap-x-2 px-3 py-2">
+              Preescolar
+            </a>
+          </li>
+          <li>
+            <a href="#primary" class="rounded-md bg-black/30 hover:bg-black/70 whitespace-no-wrap inline-flex justify-start items-center w-[120px] gap-x-2 px-3 py-2">
+              Primaria
+            </a>
+          </li>
+          <li>
+            <a href="#middle" class="rounded-md bg-black/30 hover:bg-black/70 whitespace-no-wrap inline-flex justify-start items-center w-[120px] gap-x-2 px-3 py-2">
+              Secundaria
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="text__glowing"><a href="#services">Servicios</a></li>
+      <li class="text__glowing"><a href="#gallery">Galería</a></li>
+      <li class="text__glowing"><a href="#blog">Blog</a></li>
+    </ul>
+
+    <!-- Mobile toggle -->
+    <button
+      id="mobile-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="ml-auto md:hidden inline-flex items-center justify-center p-2 rounded-md text-white
+        bg-white/0 hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#09246c]"
+    >
+      <span class="sr-only">Abrir menú</span>
+      <svg
+        id="icon-open"
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2" d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+      <svg
+        id="icon-close"
+        class="w-6 h-6 hidden"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2" d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu (off-canvas) -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-close></div>
+    <div class="absolute top-0 right-0 w-3/4 max-w-xs h-full bg-white p-6 shadow-2xl">
+      <button
+        id="mobile-close"
+        class="mb-6 inline-flex items-center justify-center p-2 rounded-md text-gray-700 focus:outline-none">
+        <span class="sr-only">Cerrar menú</span>
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <nav class="flex flex-col gap-4 mt-2">
+
+        <a href="#us" class="text-lg font-semibold text-gray-800">Nosotros</a>
+
+        <!-- SUBMENÚ MOBILE -->
+        <div class="flex flex-col">
+          <button
+            id="mobile-submenu-toggle"
+            class="flex items-center justify-between text-lg font-semibold text-gray-800">
+            Niveles
+            <svg id="mobile-submenu-icon" class="w-5 h-5 transition-transform" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Contenido del submenú -->
+          <div id="mobile-submenu" class="ml-4 mt-2 hidden flex-col gap-2">
+            <a href="#kinder" class="text-base text-gray-800">Preescolar</a>
+            <a href="#primary" class="text-base text-gray-800">Primaria</a>
+            <a href="#middle" class="text-base text-gray-800">Secundaria</a>
+          </div>
+        </div>
+
+        <a href="#services" class="text-lg font-semibold text-gray-800">Servicios</a>
+        <a href="#gallery" class="text-lg font-semibold text-gray-800">Galería</a>
+        <a href="#blog" class="text-lg font-semibold text-gray-800">Blog</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+<script>
+  (function() {
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+
+    if (!toggle || !menu) return;
+
+    const closeBtn = document.getElementById('mobile-close');
+    const overlay = menu.querySelector('[data-close]');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+
+    function openMenu() {
+      menu?.classList.remove('hidden');
+      toggle?.setAttribute('aria-expanded', 'true');
+      if(iconOpen) iconOpen.classList.add('hidden');
+      if(iconClose) iconClose.classList.remove('hidden');
+    }
+
+    function closeMenu() {
+      menu?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+      if(iconOpen) iconOpen.classList.remove('hidden');
+      if(iconClose) iconClose.classList.add('hidden');
+    }
+
+    toggle.addEventListener('click', () => {
+      if (menu?.classList.contains('hidden')) openMenu(); else closeMenu();
+    });
+
+    closeBtn?.addEventListener('click', closeMenu);
+    overlay?.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    const mobileSubToggle = document.getElementById('mobile-submenu-toggle');
+    const mobileSubMenu = document.getElementById('mobile-submenu');
+    const mobileSubIcon = document.getElementById('mobile-submenu-icon');
+
+    mobileSubToggle?.addEventListener('click', () => {
+      const isHidden = mobileSubMenu.classList.contains('hidden');
+      mobileSubMenu.classList.toggle('hidden');
+
+      // Rotar flecha
+      if (isHidden) {
+        mobileSubIcon.style.transform = 'rotate(180deg)';
+      } else {
+        mobileSubIcon.style.transform = 'rotate(0deg)';
+      }
+    });
+  })();
+</script>
+
+
+<style>
+  .text__glowing {
+    transition: text-shadow 0.3s ease;
+  }
+
+  .text__glowing:hover {
+    text-shadow:
+    2px 2px 20px #fff;
+  }
+</style>

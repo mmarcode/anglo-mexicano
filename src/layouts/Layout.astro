@@ -1,25 +1,65 @@
 ---
 import '../styles/global.css'
+import "@fontsource-variable/onest";
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Centro Escolar Anglo Mexicano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <title>Centro Escolar Anglo Mexicano | Tu mejor decisión | Escuela particular</title>
+    <meta name="description" content="Centro Escolar Anglo Mexicano: más de 36 años formando niños y jóvenes con excelencia educativa. Conoce nuestra oferta educativa, metodología y comunidad." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="/" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Centro Escolar Anglo Mexicano | Tu mejor decisión" />
+    <meta property="og:description" content="Más de 36 años formando niños y jóvenes con excelencia educativa. Conoce nuestra propuesta educativa y comunidad." />
+    <meta property="og:image" content="/images/classroom.webp" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Centro Escolar Anglo Mexicano" />
+    <meta name="twitter:description" content="Más de 36 años formando niños y jóvenes con excelencia educativa." />
+
+    <!-- Preconnects for common third-party resources (YouTube, Google Maps) -->
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+    <link rel="preconnect" href="https://www.google.com" crossorigin />
+
+    <!-- Allow pages to inject/override head metadata -->
+    <slot name="head" />
   </head>
   <body>
     <slot />
   </body>
 </html>
 
-<style>
+<style is:global>
   html,
   body {
+    background-color: #ebebeb;
+    font-family: 'Onest Variable', system-ui, sans-serif;
+    height: 100%;
     margin: 0;
     width: 100%;
-    height: 100%;
+  }
+
+  #navbar {
+    animation: blur 0.3s linear both;
+    animation-timeline: scroll();
+    animation-range: 0px 500px;
+  }
+
+  @keyframes blur {
+    to {
+      box-shadow:
+        0px 5px 50px -5px hsla(0, 0%, 100%, 0.1),
+        0px 0px 0 1px hsla(0, 0%, 100%, 0.1);
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
   }
 </style>

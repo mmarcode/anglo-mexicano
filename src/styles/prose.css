@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@layer components {
+  /* CONTENEDOR GENERAL */
+  .prose {
+    @apply text-gray-800 leading-relaxed max-w-none;
+    @apply tracking-normal;
+  }
+
+  /* TITULOS */
+  .prose h1 {
+    @apply text-4xl font-bold mb-6 mt-2;
+  }
+
+  .prose h2 {
+    @apply text-3xl font-semibold mb-4 mt-8;
+  }
+
+  .prose h3 {
+    @apply text-2xl font-semibold mb-3 mt-6;
+  }
+
+  .prose h4 {
+    @apply text-xl font-medium mb-2 mt-4;
+  }
+
+  /* PARRAFOS */
+  .prose p {
+    @apply text-lg mb-4;
+  }
+
+  /* LISTAS */
+  .prose ul {
+    @apply list-disc pl-6 mb-4;
+  }
+
+  .prose ol {
+    @apply list-decimal pl-6 mb-4;
+  }
+
+  .prose li {
+    @apply mb-1;
+  }
+
+  /* ENLACES */
+  .prose a {
+    @apply text-blue-600 underline hover:text-blue-700 transition;
+  }
+
+  /* IMÁGENES */
+  .prose img {
+    @apply rounded-xl my-6 shadow-sm;
+  }
+
+  /* CITAS */
+  .prose blockquote {
+    @apply border-l-4 border-blue-500 pl-4 italic text-gray-700 my-6;
+  }
+
+  /* TABLAS */
+  .prose table {
+    @apply w-full border-collapse my-6 text-left;
+  }
+
+  .prose th {
+    @apply px-4 py-2 bg-gray-100 font-semibold border;
+  }
+
+  .prose td {
+    @apply px-4 py-2 border;
+  }
+
+  /* CODIGO */
+  .prose pre,
+  .prose code {
+    @apply bg-gray-100 rounded-md px-2 py-1 text-sm font-mono;
+  }
+
+  .prose pre {
+    @apply p-4 overflow-x-auto;
+  }
+}
